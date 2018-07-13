@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.dexin.gsontest3.bean.ResultBean
+import com.dexin.gsontest3.ext.fromJson
 import com.google.gson.Gson
 
 class MainActivity : AppCompatActivity() {
@@ -127,10 +128,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //注意必须是javaObjectType，要不会被擦除泛型
-        val bean = Gson().fromJson(data, ResultBean::class.javaObjectType)
+        val bean = Gson().fromJson<ResultBean>(data)
+//        val bean = Gson().fromJson(data, ResultBean::class.javaObjectType)
         val results = bean.results
         //验证是否有数据
         val s = results.toString()
-        Log.e("main",s)
+        Log.e("main", s)
     }
 }
